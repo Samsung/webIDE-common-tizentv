@@ -1,7 +1,7 @@
 # @tizentv/webIDE-common-tizentv
 `@tizentv/webIDE-common-tizentv` package is a common lib project for VScode/Atom extension and Wits, providing build, install, launch web project and certificate manager.
 
-Please note that, In order to use this pacakge, `@types/webIDE-common-tizentv` is required.
+Please note that, In order to use this pacakge, `@tizentv/webIDE-common-tizentv` is required.
 
 ## Supported APIs
 -   TVWebApp
@@ -19,23 +19,68 @@ Please note that, In order to use this pacakge, `@types/webIDE-common-tizentv` i
 -   TizenCM
 
 ```js
-    constructor(resourcePath, developerCA, developerCAPriKeyPath);
-    createCert(keyfileName, authorName, authorPassword, countryInfo, stateInfo, cityInfo, organizationInfo, departmentInfo, emailInfo);
+    constructor(resourcePath) ;
+
+    /*
+    authorInfo {
+        authorFile: '',
+        authorName: '',
+        authorPassword: '',
+        authorCountry: '',
+        authorState: '',
+        authorCity: '',
+        authorOrganization: '',
+        authorDepartment: '',
+        authorEmail: ''
+    }
+    */
+    createCert(authorInfo);
 ```
 
 -   SamsungCM
 
 ```js
-    constructor(resourcePath, samsungAuthorCaPath, samsungPublicCaPath, samsungPartnerCaPath);
-    ceateAuthorCert(profileName, authorName, password, country, state, city, organization, department, accessInfo);
-    ceateDistributorCert(profileName, password, privilegeLevel, duidlist, accessInfo);
+    constructor(resourcePath);
+
+    /*
+        authorInfo  {
+            authorName : '',
+            authorPassword : '',
+            authorCountry : '',
+            authorState : '',
+            authorCity : '',
+            authorOrganization : '',
+            authorDepartment : ''
+    */
+    ceateAuthorCert(profileName, authorInfo, accessInfo);
+
+    /*
+        distrbutorInfo {
+            distributorPassword : '',
+            privilegeLevel : '',
+            duidList : ['', '', ...]
+    */
+    ceateDistributorCert(profileName, distrbutorInfo, accessInfo);
 ```
 
 -   ProfileManager
 
 ```js
     constructor(resourcePath);
-    registerProfile(profileName, authorCA, authorCertPath, authorPassword, distributorCA, distributorCertPath, distributorPassword);
+
+    /*
+        authorProfile{
+            authorCA: '',
+            authorCertPath: '',
+            authorPassword: ''
+        }
+        distributorProfile{
+            distributorCA: '',
+            distributorCertPath: '',
+            distributorPassword: ''
+        }
+    */
+    registerProfile(profileName, authorProfile, distributorProfile);
     setActivateProfile(profileName);
     removeProfile(profileName);
     modifyProfile(profileName, itemType, certpath, password);
