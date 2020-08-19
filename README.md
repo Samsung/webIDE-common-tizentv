@@ -20,21 +20,31 @@ Please note that, In order to use this pacakge, `@tizentv/webIDE-common-tizentv`
 
 ```js
     constructor(resourcePath) ;
-
+    init();
     /*
     authorInfo {
-        authorFile: '',
+        keyFileName: '',
         authorName: '',
         authorPassword: '',
-        authorCountry: '',
-        authorState: '',
-        authorCity: '',
-        authorOrganization: '',
-        authorDepartment: '',
-        authorEmail: ''
+        countryInfo: '',
+        stateInfo: '',
+        cityInfo: '',
+        organizationInfo: '',
+        departmentInfo: '',
+        emailInfo: ''
     }
     */
     createCert(authorInfo);
+    getTizenDeveloperCA();
+    /*
+    * privilegeLevel: 'public'/'partner'
+    */
+    getTizenDistributorProfile(privilegeLevel);
+
+    usage:
+        let tizenCertMgr = new TizenCM('D:\resource');
+        await tizenCertMgr.init();
+        tizenCertMgr.createCert(certInfo.authorInfo.info);
 ```
 
 -   SamsungCM
@@ -43,16 +53,16 @@ Please note that, In order to use this pacakge, `@tizentv/webIDE-common-tizentv`
     constructor(resourcePath);
 
     /*
-        authorInfo  {
-            authorName : '',
-            authorPassword : '',
-            authorCountry : '',
-            authorState : '',
-            authorCity : '',
-            authorOrganization : '',
-            authorDepartment : ''
+    authorInfo  {
+        name : '',
+        password : '',
+        country : '',
+        state : '',
+        city : '',
+        organization : '',
+        department : ''
     */
-    ceateAuthorCert(profileName, authorInfo, accessInfo);
+    createAuthorCert(profileName, authorInfo, accessInfo);
 
     /*
         distrbutorInfo {
@@ -60,7 +70,7 @@ Please note that, In order to use this pacakge, `@tizentv/webIDE-common-tizentv`
             privilegeLevel : '',
             duidList : ['', '', ...]
     */
-    ceateDistributorCert(profileName, distrbutorInfo, accessInfo);
+    createDistributorCert(profileName, distrbutorInfo, accessInfo);
 ```
 
 -   ProfileManager
@@ -88,4 +98,14 @@ Please note that, In order to use this pacakge, `@tizentv/webIDE-common-tizentv`
     listProfile();
     getProfileKeys(profileName);
     getProfileItems(profileName);
+
+    usage:
+        let profileMgr = new ProfileManager(common.resourcePath);
+        tizenAuthorProfile = {
+            authorCA: tizenCertMgr.getTizenDeveloperCA(),
+            authorCertPath: authorCertPath,
+            authorPassword: authorPassword
+        };
+        tizenDistributorProfile = tizenCertMgr.getTizenDistributorProfile('public');
+        profileMgr.registerProfile('name', tizenAuthorProfile, tizenDistributorProfile);
 ```
