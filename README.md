@@ -20,7 +20,7 @@ Please note that, In order to use this pacakge, `@tizentv/webIDE-common-tizentv`
 
 ```js
     constructor(resourcePath) ;
-    init();
+    async init();
     /*
     authorInfo {
         keyFileName: '',
@@ -42,16 +42,21 @@ Please note that, In order to use this pacakge, `@tizentv/webIDE-common-tizentv`
     getTizenDistributorProfile(privilegeLevel);
 
     usage:
+        /*
+         * TizenCM downloads certificate file from tizen.org, if using proxy to connect internet, please configure 'http-proxy' and 'https-proxy' in npm config list.
+         * eg. npm config set http-proxy http://192.168.0.1:8080
+         *     npm config set https-proxy http://192.168.0.1:8080
+         */
         let tizenCertMgr = new TizenCM('D:\resource');
         await tizenCertMgr.init();
-        tizenCertMgr.createCert(certInfo.authorInfo.info);
+        tizenCertMgr.createCert(authorInfo);
 ```
 
 -   SamsungCM
 
 ```js
     constructor(resourcePath);
-
+    async init();
     /*
     authorInfo  {
         name : '',
@@ -71,6 +76,17 @@ Please note that, In order to use this pacakge, `@tizentv/webIDE-common-tizentv`
             duidList : ['', '', ...]
     */
     createDistributorCert(profileName, distrbutorInfo, accessInfo);
+
+    usage:
+        /*
+         * SamsungCM downloads certificate file from tizen.org, if using proxy to connect internet, please configure 'http-proxy' and 'https-proxy' in npm config list.
+         * eg. npm config set http-proxy http://192.168.0.1:8080
+         *     npm config set https-proxy http://192.168.0.1:8080
+         */
+        let samsungCertMgr = new SamsungCM('D:\resource');
+        await samsungCertMgr.init();
+        samsungCertMgr.createAuthorCert(authorInfo);
+        samsungCertMgr.createDistributorCert(profileName, distrbutorInfo, accessInfo);
 ```
 
 -   ProfileManager
