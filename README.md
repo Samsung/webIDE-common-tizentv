@@ -16,7 +16,7 @@ Please note that, In order to use this pacakge, `@tizentv/webIDE-common-tizentv`
     openProject(projectPath);
 ```
 
--   TizenCM
+-   TizenCertManager
 
 ```js
     constructor(resourcePath) ;
@@ -43,16 +43,16 @@ Please note that, In order to use this pacakge, `@tizentv/webIDE-common-tizentv`
 
     usage:
         /*
-         * TizenCM downloads certificate file from tizen.org, if using proxy to connect internet, please configure 'http-proxy' and 'https-proxy' in npm config list.
+         * TizenCertManager downloads certificate file from tizen.org, if using proxy to connect internet, please configure 'http-proxy' and 'https-proxy' in npm config list.
          * eg. npm config set http-proxy http://192.168.0.1:8080
          *     npm config set https-proxy http://192.168.0.1:8080
          */
-        let tizenCertMgr = new TizenCM('D:\resource');
+        let tizenCertMgr = new TizenCertManager('D:\resource');
         await tizenCertMgr.init();
         tizenCertMgr.createCert(authorInfo);
 ```
 
--   SamsungCM
+-   SamsungCertManager
 
 ```js
     constructor(resourcePath);
@@ -79,11 +79,11 @@ Please note that, In order to use this pacakge, `@tizentv/webIDE-common-tizentv`
 
     usage:
         /*
-         * SamsungCM downloads certificate file from tizen.org, if using proxy to connect internet, please configure 'http-proxy' and 'https-proxy' in npm config list.
+         * SamsungCertManager downloads certificate file from tizen.org, if using proxy to connect internet, please configure 'http-proxy' and 'https-proxy' in npm config list.
          * eg. npm config set http-proxy http://192.168.0.1:8080
          *     npm config set https-proxy http://192.168.0.1:8080
          */
-        let samsungCertMgr = new SamsungCM('D:\resource');
+        let samsungCertMgr = new SamsungCertManager('D:\resource');
         await samsungCertMgr.init();
         samsungCertMgr.createAuthorCert(authorInfo);
         samsungCertMgr.createDistributorCert(profileName, distrbutorInfo, accessInfo);
