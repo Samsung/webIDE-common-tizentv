@@ -7,3 +7,5 @@
 backup
 .bin
 node_modules
+.prettierrc
+
