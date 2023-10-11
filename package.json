@@ -1,6 +1,6 @@
 {
   "name": "@tizentv/webide-common-tizentv",
-  "version": "1.0.18",
+  "version": "1.0.20",
   "description": "Common APIs for web IDEs extension development to support Tizen SDK features.",
   "main": "index.js",
   "author": "Samsung Electronics Co., Ltd.",
@@ -11,6 +11,7 @@
   "dependencies": {
     "@tizentv/tools": "^1.1.3",
     "archiver": "3.1.1",
+    "chalk": "^4.1.2",
     "decompress": "4.2.1",
     "got": "^11.5.2",
     "hpagent": "^0.1.1",
